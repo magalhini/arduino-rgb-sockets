@@ -9,7 +9,7 @@ const io = require('socket.io')(server);
 let led = null;
 
 app.use(express.static(__dirname + '/public'))
-app.get('/', function(req, res, next) {
+app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html')
 });
 
@@ -34,10 +34,10 @@ five.Board().on('ready', function() {
   let setStateColor = function(state) {
     led.color({
       red: state.red,
-        blue: state.blue,
-        green: state.green
+      blue: state.blue,
+      green: state.green
     });
-};
+  };
 
   io.on('connection', function(client) {
     client.on('join', function(handshake) {
